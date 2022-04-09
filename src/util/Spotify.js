@@ -20,14 +20,14 @@ const Spotify = {
             window.history.pushState('Access Token', null, '/')
             return accessToken
         } else {
-            const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`
+            const accessUrl = "https://accounts.spotify.com/authorize?client_id=" + clientId + "&response_type=token&scope=playlist-modify-public&redirect_uri=" + redirectUri
             window.location = accessUrl
         }
     },
 
     search(term) {
         const accessToken = Spotify.getAccessToken()
-        return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, { 
+        return fetch("https://api.spotify.com/v1/search?type=track&q=" + term, { 
             headers: {
                 Authorization: `Bearer ${accessToken}`
             }
