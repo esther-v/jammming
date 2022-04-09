@@ -16,13 +16,14 @@ class App extends React.Component {
       ],
       playlistName: 'My playlist',
       playlistTracks: [
-        {id: 1, name: 'Three little birds', artist: 'Bob Marley', album: 'Zion'},
-        {id: 2, name: 'Changes', artist: 'Tupac', album: '4life'},
-        {id: 3, name: 'Come as u are', artist: 'Nirvana', album: 'Come'}
+        {id: 5, name: 'Three little birds', artist: 'Bob Marley', album: 'Zion'},
+        {id: 6, name: 'Changes', artist: 'Tupac', album: '4life'},
+        {id: 7, name: 'Come as u are', artist: 'Nirvana', album: 'Come'}
       ]
     } 
     this.addTrack = this.addTrack.bind(this)
   }
+
   addTrack(track){
     let tracks = this.state.playlistTracks
     if(tracks.find(savedTrack => savedTrack.id === track.id)) {
@@ -30,6 +31,16 @@ class App extends React.Component {
     }
     tracks.push(track)
     this.setState({playlistTracks: tracks})
+  }
+
+  removeTrack(track){
+    let tracks = this.state.playlistTracks
+    if(tracks.find(savedTrack => savedTrack.id === track.id)){
+      let filteredList = tracks.filter(item => item.id !== track.id)
+      this.setState({playlistTracks: filteredList})
+    } else {
+      return
+    }
   }
 
   render() {
